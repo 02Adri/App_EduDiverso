@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar class="header-toolbar">
     <ion-title>
       ¡Bienvenidos a EduDiverso!
     </ion-title>
@@ -7,14 +7,34 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+     <div id="container">
+    <strong (click)="mostrarPersonaje()" class="clickable-title">¿Qué es EduDiverso?</strong>
+    <p>EduDiverso una nueva experiencia de Aprender...</p>
+   
+    <!--Personaje SVG Animado-->
+    <div class="personaje-svg" *ngIf="mostrar">
+      <svg width="200" height="250" viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg">
+        <!--Cabeza-->
+         <circle cx="100" cy="50" r="30" fill="#fcd5b5" />
+             <!-- Cuerpo -->
+        <rect x="75" y="80" width="50" height="70" fill="#4CAF50" rx="10" />
+         <!-- Brazos (animados) -->
+        <rect id="brazoIzq" x="40" y="80" width="20" height="10" fill="#fcd5b5" rx="5" />
+        <rect id="brazoDer" x="140" y="80" width="20" height="10" fill="#fcd5b5" rx="5" />
 
-  <div id="container">
-    <strong>¿Qué es EduDiverso?</strong>
-    <p>EduDiverso una nueva experiencia de Aprender...<a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+        <!-- Piernas (animadas) -->
+        <rect id="piernaIzq" x="80" y="150" width="10" height="50" fill="#000" />
+        <rect id="piernaDer" x="110" y="150" width="10" height="50" fill="#000" />
+      </svg>
+        <!--Burbujas de Funciones-->
+         <div class="burbujas">
+        <div class="burbuja">🎮 Juegos</div>
+        <div class="burbuja">📚 Cuentos</div>
+        <div class="burbuja">🧠 Desafíos</div>
+        <div class="burbuja">🎨 Creatividad</div>
+        <div class="burbuja">🌍 Inclusión</div>
+      </div>
+    </div>
+
   </div>
 </ion-content>
