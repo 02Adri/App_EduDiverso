@@ -1,4 +1,4 @@
-#container {
+.container {
   text-align: center;
   padding: 20px;
 }
@@ -36,4 +36,46 @@
 .header-toolbar{
   --background: #655CFA;
   --color: white;
+  display:flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.img_logo {
+  width: 100px;
+  height: 100px;
+  padding: 2px;
+ 
+  margin: 5px;
+}
+
+//Estilos de entrada del personaje
+
+.svg-container {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.brazo-saludo {
+  animation: moverBrazo 1s ease-in-out infinite alternate;
+  transform-origin: 35px 55px;
+}
+
+@keyframes moverBrazo {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-20deg);
+  }
+}
+
+/*Estilos de Menu*/
+
+ion-menu{
+  --width:250px;
+}
+.main-content{
+  background:linear-gradient(135deg, #e3f2fd,#fce4ec);
+ height: 90%;
 }

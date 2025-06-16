@@ -35,3 +35,10 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+/*Estilos generales de los SweetAlert*/
+.custom-alert{
+    border-radius: 15px !important;
+    z-index: 99999 !important;
+    pointer-events:auto !important;
+}
