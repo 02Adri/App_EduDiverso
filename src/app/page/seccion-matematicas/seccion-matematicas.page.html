@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" text="volver" icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>🧠 Sección de Mini Juego Matemático</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="fondo-contenido">
+   <div class="contenedor">
+    <h2 class="titulo-nivel">Nivel {{nivel}}</h2>
+
+    <div class="card-ejercicio" *ngIf="ejercicios[ejerciciosActual] as ejercicio ">
+      <p class="enunciado">{{ejercicio.enunciado}}</p>
+
+      <div class="Visual" *ngIf="ejercicio.tipo === 'Visual'">
+        <div class="figuras">
+          <ng-container *ngFor="let i of [].constructor(ejercicio.a)">
+            <img [src]="ejercicio.imgA" class="figura animate">
+          </ng-container>
+          <ng-container *ngFor="let i of [].constructor(ejercicio.b)">
+            <img [src]="ejercicio.imgB" class="figura animate">
+          </ng-container>
+        </div>
+      </div>
+
+
+      <div class="completar" *ngIf="ejercicio.tipo==='Completar'">
+        <p class="completar-texto">{{ejercicio.enunciado}}</p>
+      </div>
+
+      <ion-input
+      type="number"
+      placeholder="Tu respuesta"
+      [(ngModel)]="repuesta"
+      class="input-respuesta"></ion-input>
+
+      <ion-button size="small" (click)="verificar()" class="btn-verificar animate-btn">
+        Verificar ✅
+      </ion-button>
+    </div>
+      <div class="progreso">
+        pregunta {{ejerciciosActual+1}}/15
+      </div>
+   </div>
+</ion-content>

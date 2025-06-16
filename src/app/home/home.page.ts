@@ -1,14 +1,17 @@
 import { Component,Renderer2,ElementRef,ViewChild } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent,IonApp,IonMenu,IonMenuButton,IonButtons, IonButton } from '@ionic/angular/standalone';
 import {TextToSpeech} from '@capacitor-community/text-to-speech'
 import {Capacitor} from '@capacitor/core'
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import {Router} from '@angular/router'
+import Swal from 'sweetalert2'
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [CommonModule,FormsModule,IonHeader, IonToolbar, IonTitle, IonContent],
+  imports: [IonButton, CommonModule,FormsModule,IonHeader, IonToolbar, IonTitle, IonContent,IonApp,IonMenu,IonButtons,IonMenuButton],
 })
 export class HomePage {
   //variables para mostrar el personaje
@@ -21,7 +24,7 @@ export class HomePage {
   que promueve el aprendizaje inclusivo, creativo y personalizado. A través de juegos, cuentos animados, desafíos y misiones, 
   los niños exploran el mundo de las ciencias, matemáticas, lectura, valores y arte de una forma entretenida, adaptada a su ritmo y estilo de aprendizaje.`;
   
-  constructor(private renderer:Renderer2) {}
+  constructor(private renderer:Renderer2, private router:Router) {}
 
   //Funcion para mostrar el  personaje
   async mostrarPersonaje() {
@@ -102,6 +105,28 @@ export class HomePage {
       //Restablecer transformaciones
       brazoIzq.style.transform = 'rotate(0deg)';
       brazoDer.style.transform ='rotate(0deg)'
+   }
+   //Funcion de navegacion  a la página de matematicas
+   async navegarSeccionMatematicas(){
+    Swal.fire({
+      title:'¿Deseas visitar el mundo de las matemáticas?',
+      text:'¡Preparate a descubrir nuevas formas de aprender matemáticas de manera divertida..!',
+      icon:'question',
+      showCancelButton:true,
+      confirmButtonText:'¡Sí, quiero ir!',
+      cancelButtonText:'No, gracias',
+      scrollbarPadding:false,
+      heightAuto:false,
+      customClass: {
+        popup: 'custom-alert',
+      },
+      backdrop:true,
+    }).then((result)=>{
+      //si el usuario confirma, navegar a la seccion de matemáticas 
+      if(result.isConfirmed){
+        this.router.navigate(['/seccion-matematicas'])
+      }
+    })
    }
 
 }
