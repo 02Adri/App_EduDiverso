@@ -24,9 +24,13 @@ export class SeguridadAmbientalPage implements OnInit {
 
   //Navegar a game
   navegarJuego(){
-    this.navCtrl.navigateForward('/game-page')
+    this.navCtrl.navigateForward('/ruleta')
   }
   navegarCrucigrama(){
     this.navCtrl.navigateForward('/crucigrama')
+  }
+  
+  navegarSopaLetras(){
+    this.navCtrl.navigateForward('/sopa-letras-ambiental')
   }
 }

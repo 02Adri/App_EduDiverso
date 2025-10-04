@@ -1,0 +1,117 @@
+.ruleta-bg {
+  --background: linear-gradient(135deg, #a8e063, #56ab2f);
+  text-align: center;
+  font-family: 'Comic Neue', cursive;
+}
+
+.start-screen {
+  margin-top: 20%;
+  .title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  .name-input {
+    margin: 20px;
+    border-radius: 12px;
+    background: #fff;
+  }
+}
+
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  .lives {
+    font-size: 1.5rem;
+  }
+  .time-bar {
+    flex: 1;
+    margin: 0 10px;
+    height: 12px;
+    background: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    .time-progress {
+      height: 100%;
+      background: #4caf50;
+      transition: width 0.5s;
+    }
+    .warning { background: #ff9800; }
+    .danger { background: #f44336; }
+  }
+  .points {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+  }
+}
+
+.roulette-container {
+  margin: 20px auto;
+  position: relative;
+  width: 260px;
+  height: 260px;
+}
+.roulette-wheel {
+  width: 100%;
+  height: 100%;
+  border: 10px solid #fff;
+  border-radius: 50%;
+  background: conic-gradient(#a8e063 0deg 60deg, #56ab2f 60deg 120deg, #ffd54f 120deg 180deg,
+                             #29b6f6 180deg 240deg, #ff7043 240deg 300deg, #ab47bc 300deg 360deg);
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  transition: transform 4s cubic-bezier(0.25,1,0.5,1);
+  position: relative;
+  overflow: hidden;
+}
+.sector {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: left center;
+  span {
+    font-size: 2rem;
+    transform: translateX(30px);
+  }
+}
+.pointer {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+}
+
+.question-card {
+  margin-top: 15px;
+  border-radius: 20px;
+  ion-card-title {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+  ion-button {
+    margin-top: 10px;
+    font-size: 1rem;
+  }
+}
+
+.result-msg {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: yellow;
+  text-shadow: 2px 2px #000;
+  margin-top: 15px;
+}
+
+.ranking {
+  margin-top: 30px;
+  h2 {
+    color: #fff;
+  }
+  .gold { color: gold; }
+  .silver { color: silver; }
+  .bronze { color: peru; }
+}

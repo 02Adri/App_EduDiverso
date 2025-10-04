@@ -36,6 +36,7 @@
     "@capacitor/share": "^7.0.1",
     "@capacitor/splash-screen": "^7.0.1",
     "@capacitor/status-bar": "latest",
+    "@capacitor/storage": "^1.2.5",
     "@ionic/angular": "^8.0.0",
     "canvas-confetti": "^1.9.3",
     "cordova-plugin-tts": "^0.2.3",
