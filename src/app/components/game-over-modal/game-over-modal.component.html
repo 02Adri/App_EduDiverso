@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Fin de la partida</ion-title>
+    <ion-buttons slot="end"><ion-button (click)="close()">Cerrar</ion-button></ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="summary">
+    <h2>Puntos: <span class="big">{{score}}</span></h2>
+    <p>Nivel alcanzado: <strong>{{level}}</strong></p>
+
+    <ion-item>
+      <ion-label position="floating">Tu nombre</ion-label>
+      <ion-input [(ngModel)]="playerName"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" (click)="save()">Guardar en ranking</ion-button>
+
+    <ion-card class="tip-card">
+      <ion-card-header>
+        <ion-card-title>Tip ambiental</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{chosenTip}}
+      </ion-card-content>
+    </ion-card>
+
+    <ion-button expand="block" fill="clear" (click)="close()">Volver al juego</ion-button>
+  </div>
+</ion-content>

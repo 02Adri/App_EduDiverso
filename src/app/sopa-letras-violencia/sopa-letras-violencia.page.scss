@@ -1,0 +1,146 @@
+:host {
+  display: block;
+  background: linear-gradient(to bottom, #fceabb, #f8b500, #ff7f50);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Estadísticas */
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+/* Timer */
+.timer {
+  position: relative;
+  width: 90%;
+  height: 20px;
+  background: #eee;
+  border-radius: 12px;
+  margin: auto;
+  overflow: hidden;
+}
+.time-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #4caf50, #ff9800, #f44336);
+  transition: width 1s linear;
+}
+.time-text {
+  display: block;
+  text-align: center;
+  margin-top: 6px;
+  font-weight: bold;
+}
+
+/* Tablero */
+.grid {
+  display: grid;
+  justify-content: center;
+  margin: 1rem 0;
+}
+.row {
+  display: flex;
+}
+.row span {
+  width: 34px;
+  height: 34px;
+  margin: 2px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+.row span:hover {
+  transform: scale(1.1);
+  background: #ffe0f7;
+}
+.row span.selected {
+  background: #4caf50;
+  color: #fff;
+}
+
+/* Palabras */
+.word-list {
+  margin: 1rem 0;
+  text-align: center;
+}
+.word-list h3 {
+  margin-bottom: 6px;
+}
+.word-list li {
+  padding: 4px 0;
+  cursor: pointer;
+}
+.word-list li.found {
+  text-decoration: line-through;
+  color: #999;
+}
+
+/* Pantalla final */
+.final {
+  text-align: center;
+  margin-top: 20px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  animation: fondoAnim 6s linear infinite alternate;
+}
+.titulo-final {
+  font-size: 2.3rem;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 0 12px rgba(0,0,0,0.4);
+  animation: brillar 1.5s infinite alternate;
+}
+.puntos-final {
+  font-size: 1.4rem;
+  margin: 16px 0;
+}
+
+/* Ranking */
+.ranking {
+  margin: 2rem 0;
+}
+
+/* Confeti */
+.confetti-fallback {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 1000;
+  background: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.confetti-fallback.show {
+  opacity: 0.6;
+  background: repeating-linear-gradient(
+    -45deg,
+    #ff4081,
+    #ff4081 10px,
+    #40c4ff 10px,
+    #40c4ff 20px
+  );
+}
+
+/* Animaciones */
+@keyframes brillar {
+  0% { text-shadow: 0 0 10px #fff; }
+  50% { text-shadow: 0 0 20px #ffeb3b; }
+  100% { text-shadow: 0 0 10px #fff; }
+}
+@keyframes fondoAnim {
+  0% { background: linear-gradient(135deg,#ff9a9e,#fad0c4); }
+  50% { background: linear-gradient(135deg,#a1c4fd,#c2e9fb); }
+  100% { background: linear-gradient(135deg,#ff9a9e,#fad0c4); }
+}

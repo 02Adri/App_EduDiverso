@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar color="success"><ion-title>Ranking - Recolector Verde</ion-title></ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <div class="list">
+    <ion-card *ngFor="let r of rankings; let i = index" [class.top]="i<3">
+      <ion-item>
+        <ion-avatar slot="start"><img src="assets/game/avatars/av-{{i%6}}.png"/></ion-avatar>
+        <ion-label>
+          <h2>{{i+1}}. {{r.name}} <span class="score">{{r.score}}</span></h2>
+          <p>Nivel {{r.level}} • {{ r.date | date:'short' }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+  </div>
+  <ion-button expand="block" color="medium" (click)="clear()">Limpiar Ranking</ion-button>
+</ion-content>

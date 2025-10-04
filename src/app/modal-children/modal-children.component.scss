@@ -1,0 +1,91 @@
+.login-content {
+  --background: linear-gradient(135deg, #43cea2, #185a9d);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* ocupa todo el alto del modal */
+  padding: 20px; /* evita que se pegue a los bordes */
+}
+
+.login-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 25px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  animation: fadeInUp 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centra el contenido dentro */
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #185a9d;
+    margin-bottom: 5px;
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: #666;
+  }
+}
+
+.custom-input {
+  margin-bottom: 15px;
+  border-radius: 12px;
+  --background: #f4f4f4;
+  --padding-start: 12px;
+  ion-icon {
+    color: #185a9d;
+    font-size: 1.2rem;
+  }
+  ion-input,
+  ion-select {
+    font-size: 0.95rem;
+  }
+}
+
+.botones {
+  margin-top: 20px;
+
+  ion-button {
+    border-radius: 12px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 5px 15px rgba(67, 206, 162, 0.4);
+  }
+}
+
+.toggle-registro {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #444;
+
+  ion-toggle {
+    --handle-background: #43cea2;
+    --background-checked: #185a9d;
+  }
+}
+
+/* Animación suave al abrir */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

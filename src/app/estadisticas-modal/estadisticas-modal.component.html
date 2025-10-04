@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title>📊 Estadísticas de Uso</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrar()">
+        <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="estadisticas-content">
+  <div class="card resumen">
+    <h2>Resumen</h2>
+    <p><strong>Total ingresos:</strong> {{ totalIngresos }}</p>
+    <p><strong>Ingresos hoy:</strong> {{ ingresosHoy }}</p>
+    <p><strong>Porcentaje hoy:</strong> {{ porcentaje }}%</p>
+    <p><strong>Último ingreso:</strong> {{ ultimaFecha }}</p>
+  </div>
+
+  <div class="card historial">
+    <h2>Historial de Ingresos</h2>
+    <ion-list>
+      <ion-item *ngFor="let r of registros; let i = index">
+        <ion-icon slot="start" name="time-outline"></ion-icon>
+        <ion-label>
+          {{ r.fecha }} - {{ r.hora }}
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

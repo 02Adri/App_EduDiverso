@@ -1,0 +1,63 @@
+<ion-header [translucent]="true" class="header-violencia">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" text="Volver" icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>
+      <div class="title-container">
+        <img src="/assets/figuras/violencia.png" alt="Violencia" class="header-img" />
+        <div class="title-text">
+          <h1>Violencia de Género</h1>
+          <p>Prevención y acompañamiento</p>
+        </div>
+      </div>
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button fill="clear">
+        <ion-icon name="information-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="page-content">
+
+  <!-- Fondo decorativo -->
+  <div class="background-shape"></div>
+
+  <!-- CARD 1 -->
+  <ion-card button (click)="abrirJuego()" class="game-card card-genero">
+    <div class="card-img-container">
+      <img src="/assets/figuras/estereotipo.png" alt="Estereotipo de Género">
+    </div>
+    <ion-card-header>
+      <ion-card-title>Esterotipo de Género</ion-card-title>
+      <ion-card-subtitle>¡Pon a prueba tus conocimientos!</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+  <!-- CARD 2 -->
+  <ion-card button (click)="abrirJuegoSapito()" class="game-card card-valores">
+    <div class="card-img-container">
+      <img src="/assets/figuras/hojas.png" alt="Descripción de Valores">
+    </div>
+    <ion-card-header>
+      <ion-card-title>Descripción de Valores</ion-card-title>
+      <ion-card-subtitle>¡Pon a prueba tus conocimientos!</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+  <!-- CARD 3 -->
+  <ion-card button (click)="abrirJuegoSopaLetras()" class="game-card card-sopa">
+    <div class="card-img-container">
+      <img src="/assets/figuras/sopa-letras P.V.G.png" alt="Sopa de Letras">
+    </div>
+    <ion-card-header>
+      <ion-card-title>Sopa de Letras</ion-card-title>
+      <ion-card-subtitle>¡Pon a prueba tus conocimientos!</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+</ion-content>

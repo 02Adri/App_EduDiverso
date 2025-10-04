@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>🧩 Crucigrama - Seguridad y Ambiente</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleRanking()">
+        <ion-icon name="trophy-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="crucigrama-page">
+  <!-- Start modal / ask name -->
+  <div class="start-modal" *ngIf="showStartModal">
+    <div class="card">
+      <h2>¡Bienvenido!</h2>
+      <p>Ingresa tu nombre para comenzar</p>
+      <ion-input [(ngModel)]="playerName" placeholder="Tu nombre"></ion-input>
+      <ion-button expand="block" color="success" (click)="startGame()">Iniciar</ion-button>
+      <p class="hint">Tema: valores y seguridad ambiental</p>
+    </div>
+  </div>
+
+  <!-- HUD -->
+  <div class="hud" *ngIf="!showStartModal">
+    <div class="left">
+      <ion-badge color="tertiary">{{ playerName }}</ion-badge>
+      <div class="score">⭐ {{ score }}</div>
+      <div class="lives">💚 x{{ lives }}</div>
+    </div>
+    <div class="center">
+      <ion-progress-bar [value]="timeLeft / timeTotal"></ion-progress-bar>
+      <div class="time-text">⏱ {{ timeLeft }}s</div>
+    </div>
+    <div class="right">
+      <ion-button size="small" fill="outline" (click)="replay()">Volver a jugar</ion-button>
+    </div>
+  </div>
+
+  <!-- Grid + clues -->
+  <div class="main-grid" *ngIf="!showStartModal">
+    <div class="board">
+      <div *ngFor="let r of grid; let ri = index" class="row">
+        <div *ngFor="let c of r; let ci = index" class="cell" [class.blocked]="c.blocked">
+          <input *ngIf="!c.blocked"
+                 id="cell-{{c.coord}}"
+                 maxlength="1"
+                 [value]="c.input"
+                 (input)="onInputKey(ri,ci,$event)"
+                 autocomplete="off"
+                 />
+        </div>
+      </div>
+    </div>
+
+    <div class="clues">
+      <h3>Pistas</h3>
+      <ol>
+        <li *ngFor="let w of placedWords">
+          <strong>{{ w.key }}</strong> — {{ w.clue }} <span *ngIf="w.found" class="found">✔</span>
+        </li>
+      </ol>
+
+      <ion-button expand="block" (click)="checkWords()" color="primary">Comprobar palabras</ion-button>
+    </div>
+  </div>
+
+  <!-- Ranking panel -->
+  <div class="ranking-panel" *ngIf="showRanking">
+    <h3>🏆 Ranking</h3>
+    <ion-list>
+      <ion-item *ngFor="let s of leaderboard; let i = index">
+        <ion-label>
+          <h2>{{ i+1 }}. {{ s.name }}</h2>
+          <p>{{ s.score }} pts — {{ s.date | date:'short' }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="block" color="secondary" (click)="toggleRanking()">Cerrar</ion-button>
+  </div>
+
+  <!-- Result modal -->
+  <div class="result-modal" *ngIf="showResult">
+    <div class="card result">
+      <h2>{{ resultMessage }}</h2>
+      <ion-button expand="block" color="success" (click)="replay()">Jugar otra vez</ion-button>
+      <ion-button expand="block" color="medium" (click)="toggleRanking()">Ver ranking</ion-button>
+    </div>
+  </div>
+</ion-content>

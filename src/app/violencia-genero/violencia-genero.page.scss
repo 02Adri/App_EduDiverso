@@ -1,0 +1,203 @@
+/* ====== ENCABEZADO ====== */
+.header-violencia {
+  ion-toolbar {
+    --background: linear-gradient(135deg, #8e2de2 0%, #4a00e0 100%);
+    --color: #fff;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+    animation: fadeSlideIn 0.8s ease-out;
+    position: relative;
+    overflow: hidden;
+  }
+
+  ion-back-button {
+    --color: #fff;
+  }
+
+  .title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .header-img {
+    height: 45px;
+    border-radius: 10px;
+    animation: floatImage 4s ease-in-out infinite;
+  }
+
+  .title-text {
+    h1 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin: 0;
+      color: #fff;
+      text-transform: uppercase;
+    }
+
+    p {
+      font-size: 0.85rem;
+      margin: 0;
+      color: #e0e0e0;
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -100%;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #ff8a00, #e52e71, #8e2de2);
+    animation: loadingBar 6s linear infinite;
+  }
+}
+
+/* ====== CONTENIDO ====== */
+.page-content {
+  --background: #f7f4ff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  position: relative;
+}
+
+.background-shape {
+  position: absolute;
+  top: -100px;
+  left: -60px;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, #d8b9ff 0%, transparent 70%);
+  z-index: -1;
+  animation: pulseShape 6s ease-in-out infinite alternate;
+}
+
+/* ====== BASE CARD ====== */
+.game-card {
+  width: 95%;
+  border-radius: 25px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  animation: fadeInCard 1s ease both;
+
+  &:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  }
+
+  .card-img-container {
+    height: 190px;
+    overflow: hidden;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.08);
+  }
+
+  ion-card-header {
+    padding: 16px;
+  }
+
+  ion-card-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+
+  ion-card-subtitle {
+    font-size: 0.9rem;
+    color: #555;
+  }
+}
+
+/* ====== TEMAS DE COLOR POR JUEGO ====== */
+.card-genero {
+  border-top: 6px solid #ff6b6b;
+  ion-card-title { color: #e63946; }
+  ion-card-subtitle { color: #7b1e1e; }
+}
+
+.card-valores {
+  border-top: 6px solid #4ecdc4;
+  ion-card-title { color: #00796b; }
+  ion-card-subtitle { color: #004d40; }
+}
+
+.card-sopa {
+  border-top: 6px solid #ffb400;
+  ion-card-title { color: #ff8f00; }
+  ion-card-subtitle { color: #795548; }
+}
+
+/* ====== MODO OSCURO ====== */
+@media (prefers-color-scheme: dark) {
+  .page-content {
+    --background: #1e1e2f;
+  }
+
+  .game-card {
+    background: #2a2a3d;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+
+    ion-card-title {
+      color: #fff;
+    }
+
+    ion-card-subtitle {
+      color: #bbb;
+    }
+
+    &:hover {
+      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  .background-shape {
+    background: radial-gradient(circle, #673ab7 0%, transparent 70%);
+  }
+
+  .header-violencia ion-toolbar {
+    --background: linear-gradient(135deg, #4a148c, #7b1fa2);
+  }
+}
+
+/* ====== ANIMACIONES ====== */
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(-25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatImage {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes loadingBar {
+  0% { left: -100%; }
+  50% { left: 0; }
+  100% { left: 100%; }
+}
+
+@keyframes fadeInCard {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseShape {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(1.3); opacity: 0.4; }
+}

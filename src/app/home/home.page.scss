@@ -1,81 +1,378 @@
-.container {
-  text-align: center;
-  padding: 20px;
+/* -------------------------
+   HEADER
+------------------------- */
+.header-toolbar {
+  background: linear-gradient(135deg, #2e7d32, #43a047 50%, #8e24aa 90%);
+  background-size: 200% 200%;
+  animation: gradientBG 10s ease infinite;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .3rem .8rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,.15);
+  border-bottom: 3px solid #ff80ab;
 }
 
-.clickable-title {
-  cursor: pointer;
-  color: #3880ff;
-  font-weight: bold;
+/* 🌱 Tema ambiental */
+.header-toolbar.ambiental {
+  background: linear-gradient(135deg, #2e7d32, #43a047);
+  border-bottom: 3px solid #66bb6a;
+  color:#66bb6a;
+}
+
+/* 💜 Tema género */
+.header-toolbar.genero {
+  background: linear-gradient(135deg, #6a1b9a, #8e24aa);
+  border-bottom: 3px solid #ce93d8;
+  color:#6a1b9a;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+}
+
+.logo {
+  width: 55px;
+  height: auto;
+}
+
+.app-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-name {
   font-size: 1.3rem;
-}
-
-.personaje-svg {
-  margin-top: 30px;
-  user-select: none;
-}
-
-.burbujas {
-  margin-top: 20px;
+  margin: 0;
+  font-weight: 700;
+  
   display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.burbuja {
-  background: #4caf50;
-  color: white;
-  border-radius: 20px;
-  padding: 8px 15px;
-  font-weight: 600;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.2);
-  user-select: none;
-}
-
-.header-toolbar{
-  --background: #655CFA;
-  --color: white;
-  display:flex;
   align-items: center;
-  justify-content: flex-start;
+  gap: .3rem;
 }
-.img_logo {
-  width: 100px;
-  height: 100px;
-  padding: 2px;
+
+.app-slogan {
+  font-size: .9rem;
+  margin: 0;
  
-  margin: 5px;
 }
 
-//Estilos de entrada del personaje
+.theme-icon {
+  font-size: 1.2rem;
+}
 
-.svg-container {
+.animated-icon {
+  font-size: 1.4rem;
+  margin-left: .5rem;
+  animation: twinkle 2s infinite alternate;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+
+@keyframes twinkle {
+  from { opacity: .6; transform: scale(.9) }
+  to { opacity: 1; transform: scale(1.1) }
+}
+
+/* -------------------------
+   HOME SECTION
+------------------------- */
+.home {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  margin-left: 10px;
-}
+  padding: 1.5rem 1rem;
+  color: #1a1a1a;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* 🎨 Fondo combinado */
+  --background: linear-gradient(
+    135deg,
+    #13971e 0%,   /* verde claro ambiental */
+    #f3e5f5 100%  /* lila claro género */
+  );
+  background-attachment: fixed; /* efecto suave al hacer scroll */
 
-.brazo-saludo {
-  animation: moverBrazo 1s ease-in-out infinite alternate;
-  transform-origin: 35px 55px;
-}
 
-@keyframes moverBrazo {
-  0% {
-    transform: rotate(0deg);
+  .intro-section {
+    max-width: 600px;
+    text-align: center;
+    margin-bottom: 1.5rem;
+
+    h1 {
+      font-size: 2.7rem;
+      margin-bottom: 0.7rem;
+      color: #6d2e7d;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    p {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      margin-bottom: 0.8rem;
+      color: #6d2e7d;
+    }
+
+    .highlight {
+      font-weight: 700;
+      font-size: 1.25rem;
+     color: #6d2e7d;
+      margin-bottom: 1.2rem;
+    }
+
+    ion-button {
+      --background: #43a047;
+      --border-radius: 25px;
+      font-weight: bold;
+      font-size: 1.15rem;
+      padding: 0.65rem 2.5rem;
+      box-shadow: 0 5px 10px rgba(67, 160, 71, 0.5);
+      transition: background 0.3s ease;
+
+      &:hover {
+        --background: #2e7d32;
+      }
+    }
   }
-  100% {
-    transform: rotate(-20deg);
+
+  .statistics {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+
+    .stat-item {
+      background: #e6f4ea;
+      border-radius: 15px;
+      padding: 1rem 2rem;
+      box-shadow: 0 4px 12px rgba(50, 168, 82, 0.2);
+      flex: 1 1 150px;
+      text-align: center;
+
+      .number {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #2e7d32;
+        margin-bottom: 0.3rem;
+      }
+
+      .label {
+        font-weight: 600;
+        font-size: 1rem;
+        color: #4a784d;
+      }
+    }
+  }
+
+  .svg-wrapper {
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 4 / 3;
+    filter: drop-shadow(0 0 7px rgba(0, 0, 0, 0.15));
+    margin: 0 auto;
+
+    svg {
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+      transition: background-color 1s ease;
+      overflow: visible;
+    }
+
+    &.day .sky { fill: url(#skyDay); }
+    &.evening .sky { fill: url(#skyEvening); }
+    &.night .sky { fill: url(#skyNight); }
+
+    .sun-moon {
+      transition: cx 1.5s ease, cy 1.5s ease, fill 1.5s ease;
+    }
+  }
+
+  ion-modal {
+    --background: #f7fdf6;
+  }
+
+  ion-modal .modal-content {
+    padding: 1.5rem;
+
+    p {
+      font-size: 1.1rem;
+      color: #2f4f2f;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    ul {
+      margin-left: 1.3rem;
+      margin-bottom: 1rem;
+      color: #2e7d32;
+
+      li {
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
+    }
   }
 }
 
-/*Estilos de Menu*/
+//Seccion de violencia de genero
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+  padding: 1rem;
+}
 
-ion-menu{
-  --width:250px;
+.card-flip {
+  perspective: 1000px;
+  width: 100%;
+  height: 220px;
+  position: relative;
+
+  .card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    padding: 1.2rem;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.8s ease;
+    box-shadow: 0 6px 15px rgba(142, 36, 170, 0.3);
+  }
+
+  .card-front {
+    background: linear-gradient(135deg, #ab47bc, #8e24aa);
+    color: #fff;
+
+    ion-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+  }
+
+  .card-back {
+    background: #f3e5f5;
+    color: #4a148c;
+    transform: rotateY(180deg);
+    text-align: center;
+
+    p {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+  }
+
+  &:hover .card-front {
+    transform: rotateY(180deg);
+  }
+
+  &:hover .card-back {
+    transform: rotateY(360deg);
+  }
 }
-.main-content{
-  background:linear-gradient(135deg, #e3f2fd,#fce4ec);
- height: 90%;
+
+//Diseño de efectos ambientales
+/* 🌧️ Lluvia */
+/* 🌧️ Lluvia vertical realista */
+/* 🌧️ Lluvia intensa con gotas alargadas */
+/* 🌧️ Lluvia realista con gotas */
+.rain {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 5;
 }
+
+.rain::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  background-image: 
+    radial-gradient(circle, rgba(0,150,255,0.6) 2px, transparent 2px),
+    radial-gradient(circle, rgba(0,150,255,0.4) 1.5px, transparent 1.5px),
+    radial-gradient(circle, rgba(0,150,255,0.3) 1px, transparent 1px);
+  background-size: 20px 40px, 30px 60px, 40px 80px;
+  animation: rainFall 1s linear infinite;
+}
+
+@keyframes rainFall {
+  from { transform: translateY(0); }
+  to   { transform: translateY(100px); }
+}
+
+
+/* ❄️ Nieve */
+/* ❄️ Nieve mejorada */
+.snow {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(white 2px, transparent 2px),
+    radial-gradient(white 3px, transparent 3px),
+    radial-gradient(white 1.5px, transparent 1.5px);
+  background-size: 20px 20px, 40px 40px, 60px 60px;
+  background-position: 0 0, 10px 10px, 20px 20px;
+  animation: snowAnim 15s linear infinite;
+  z-index: 5;
+}
+
+@keyframes snowAnim {
+  from { background-position: 0 0, 10px 10px, 20px 20px; }
+  to { background-position: 0 1000px, 10px 1010px, 20px 1020px; }
+}
+
+/* ✨ Estrellas */
+.stars {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+  animation: twinkle 4s infinite alternate;
+  z-index: 5;
+}
+@keyframes twinkle {
+  from { opacity: 0.6; }
+  to { opacity: 1; }
+}
+
+/* 🌲 Árboles balanceándose */
+.tree {
+  animation: sway 4s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+@keyframes sway {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(2deg); }
+}
+
+/* Botón con pulso */
+.pulse-btn {
+  animation: pulseBtn 2s infinite;
+}
+@keyframes pulseBtn {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 rgba(67,160,71,0.5); }
+  50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(67,160,71,0.6); }
+}
+

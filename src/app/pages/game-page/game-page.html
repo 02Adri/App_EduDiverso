@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Recolector Verde</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="hud">
+    <div>Nombre: <ion-input [(ngModel)]="jugador"></ion-input></div>
+    <div>Score: {{score}}</div>
+    <div>Tiempo: {{timeLeft}}</div>
+    <div>Nivel: {{level}}</div>
+  </div>
+
+  <div class="game-area">
+    <div class="stage">
+      <div *ngFor="let item of activeItems" class="falling-item" [style.left.%]="item.x" [style.top.px]="item.y">
+        <img [src]="'/assets/sprites/'+item.kind+'.png'">
+      </div>
+    </div>
+
+    <div class="containers">
+      <div *ngFor="let c of containers" class="container" [style.left.px]="c.x">
+        <div class="lid"></div>
+        <div class="body">
+          <img [src]="'/assets/sprites/container-'+c.kind+'.png'">
+        </div>
+        <div class="label">{{c.kind}}</div>
+      </div>
+    </div>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="iniciarJuego()">
+        <ion-icon name="play"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+</ion-content>
