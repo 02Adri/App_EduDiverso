@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Adjuntar recursos de Actividades Escolares</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Selección del grado -->
+  <ion-item>
+    <ion-label>Seleccionar el grado correspondiente</ion-label>
+    <ion-select [(ngModel)]="selectedGrado">
+      <ion-select-option *ngFor="let grado of ['4º', '5º', '6º']">{{ grado }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- Selección de la clase según el grado -->
+  <ion-item *ngIf="selectedGrado" >
+    <ion-label>Seleccionar clase</ion-label>
+    <ion-select [(ngModel)]="selectedClase">
+      <ion-select-option *ngFor="let clase of clasesPorGrado[selectedGrado]">
+        {{ clase }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- Carga de archivos -->
+  <ion-item *ngIf="selectedClase">
+    <ion-label position="stacked">Agregar archivos</ion-label>
+    <input type="file" (change)="seleccionarArchivos($event)" multiple />
+  </ion-item>
+
+  <!-- Lista de archivos cargados -->
+  <ion-list *ngIf="clases.length > 0">
+    <ion-item *ngFor="let file of clases; let i = index">
+      <ion-label>{{ file.nombre }}</ion-label>
+      
+      <ion-button fill="clear" (click)="eliminarArchivo(i)">
+        <ion-icon name="trash-bin-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+      
+      <ion-button fill="clear" (click)="openPreview(file.data)">
+        <ion-icon name="eye-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+      
+      <ion-button fill="clear" (click)="descargarArchivo(file.data, file.nombre, file.tipo)">
+        <ion-icon name="download-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

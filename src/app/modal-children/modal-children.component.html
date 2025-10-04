@@ -1,0 +1,66 @@
+<ion-content class="login-content">
+     <div class="login-card">
+    <div class="header">
+      <h2 *ngIf="!esNuevo">Bienvenidos Niños y Niñas👋</h2>
+      <h2 *ngIf="esNuevo">Crea tu cuenta ✨</h2>
+      <p *ngIf="!esNuevo">Inicia sesión para continuar</p>
+      <p *ngIf="esNuevo">Regístrate para acceder</p>
+    </div>
+    <!--Usuario Existente-->
+    <ng-container *ngIf="!esNuevo">
+       <ion-item class="custom-input">
+        <ion-icon name="person-outline" slot="start"></ion-icon>
+        <ion-select [(ngModel)]="nombre" placeholder="Selecciona tu nombre">
+          <ion-select-option *ngFor="let c of children" [value]="c.nombre">
+            {{ c.nombre }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item class="custom-input">
+        <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+        <ion-input
+          type="password"
+          [(ngModel)]="password"
+          placeholder="Ingresa tu contraseña"
+        ></ion-input>
+      </ion-item>
+    </ng-container>
+
+    <!--Registro Nuevo-->
+    <ng-container *ngIf="esNuevo">
+      <ion-item class="custom-input">
+        <ion-icon name="person-add-outline" slot="start"></ion-icon>
+        <ion-input
+          [(ngModel)]="nombre"
+          placeholder="Escribe tu nombre"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item class="custom-input">
+        <ion-icon name="key-outline" slot="start"></ion-icon>
+        <ion-input
+          type="password"
+          [(ngModel)]="password"
+          placeholder="Mínimo 8 caracteres"
+        ></ion-input>
+      </ion-item>
+    </ng-container>
+    <!-- Botones -->
+    <div class="botones">
+      <ion-button expand="block" color="success" (click)="continuar()">
+        <ion-icon name="log-in-outline" slot="start"></ion-icon>
+        {{ esNuevo ? 'Registrarse' : 'Iniciar Sesión' }}
+      </ion-button>
+      <ion-button expand="block" fill="clear" (click)="cerrar()">
+        Cancelar
+      </ion-button>
+    </div>
+
+    <!-- Toggle de registro/login -->
+    <div class="toggle-registro">
+      <ion-label>{{ esNuevo ? '¿Ya tienes cuenta?' : '¿Eres nuevo?' }}</ion-label>
+      <ion-toggle [(ngModel)]="esNuevo"></ion-toggle>
+    </div>
+  </div>
+</ion-content>

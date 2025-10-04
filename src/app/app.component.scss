@@ -1,0 +1,15 @@
+.menu-content {
+  --background: #f1f8e9;
+  ion-item {
+    --background: transparent;
+    --color: #2e7d32;
+    font-weight: 500;
+    ion-icon {
+      color: #43a047;
+    }
+    &:hover {
+      --background: #c8e6c9;
+      border-radius: 12px;
+    }
+  }
+}

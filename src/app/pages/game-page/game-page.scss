@@ -1,0 +1,27 @@
+.game-area {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 56px);
+  overflow: hidden;
+  background-image: url('/assets/sprites/school.png');
+  background-size: cover;
+  background-position: center top;
+}
+
+.stage { position: relative; width: 100%; height: 100%; z-index: 1; }
+
+.falling-item {
+  position: absolute; width: 50px; height: 50px; z-index: 10;
+}
+.falling-item img { width:100%; height:100%; object-fit:contain; }
+
+.containers {
+  position: absolute; bottom:0; width:100%; display:flex; justify-content:space-around;
+}
+.container { width:70px; height:100px; text-align:center; position:absolute; }
+.container .lid { height:20px; background:#4caf50; border-radius:5px 5px 0 0; }
+.container .body { height:80px; background:#81c784; border-radius:0 0 5px 5px; display:flex; align-items:center; justify-content:center; }
+.container .body img { width:80%; height:auto; }
+.container .label { font-size:12px; margin-top:4px; }
+
+.hud { display:flex; justify-content:space-between; padding:6px; background:#ffffffdd; position:sticky; top:0; z-index:50; }

@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
-
+import { inject } from '@angular/core';
+import { RoleGuard } from './guards/role.guard'
 export const routes: Routes = [
   {
     path: 'home',
@@ -11,11 +12,51 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'seccion-matematicas',
-    loadComponent: () => import('./page/seccion-matematicas/seccion-matematicas.page').then( m => m.SeccionMatematicasPage)
+    path: 'seguridad-ambiental',
+    loadComponent: () => import('./seguridad-ambiental/seguridad-ambiental.page').then( m => m.SeguridadAmbientalPage)
   },
   {
-    path: 'seccion-ly-l',
-    loadComponent: () => import('./page/seccion-ly-l/seccion-ly-l.page').then( m => m.SeccionLyLPage)
+    path: 'violencia-genero',
+    loadComponent: () => import('./violencia-genero/violencia-genero.page').then( m => m.ViolenciaGeneroPage)
   },
+  {
+    path: 'recursos-maestros',
+    loadComponent: () => import('./recursos-maestros/recursos-maestros.page').then( m => m.RecursosMaestrosPage)
+  },
+  {
+    path: 'evaluacion',
+    loadComponent: () => import('./evaluacion/evaluacion.page').then( m => m.EvaluacionPage)
+  },
+  {
+    path: 'juego-estereotipos',
+    loadComponent: () => import('./juego-estereotipos/juego-estereotipos.page').then( m => m.JuegoEstereotiposPage)
+  },
+  { path: '', redirectTo: 'library', pathMatch: 'full' },
+  { path: 'library', loadComponent: () => import('./pages/library.page').then(m => m.LibraryPage) },
+  { path: 'login', loadComponent: () => import('./pages/login.page').then(m => m.LoginPage) },
+  // ejemplo de ruta protegida (no es estrictamente necesaria porque el modal impide subir si no hay rol)
+  {
+    path: 'upload',
+    loadComponent: () => import('./components/upload-modal.component').then(m => m.UploadModalComponent),
+    canActivate: [() => inject(RoleGuard).canActivate()]
+  },
+  {
+    path: 'juego-sapito',
+    loadComponent: () => import('./juego-sapito/juego-sapito.page').then( m => m.JuegoSapitoPage)
+  },
+  {
+    path: 'game-page',
+    loadComponent: () => import('./pages/game-page/game-page').then( m => m.GamePage)
+  },
+ 
+  
+  {
+    path: 'crucigrama',
+    loadComponent: () => import('./pages/crucigrama/crucigrama.page').then( m => m.CrucigramaPage)
+  },
+  {
+    path: 'sopa-letras-violencia',
+    loadComponent: () => import('./sopa-letras-violencia/sopa-letras-violencia.page').then( m => m.SopaLetrasViolenciaPage)
+  }
+  
 ];

@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Gestión de Maestros</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-input
+      label="Nombre del maestro"
+      [value]="maestroNombre()"
+      (input)="maestroNombre.set($any($event.target).value)">
+    </ion-input>
+    <ion-buttons slot="end">
+      <ion-button fill="solid" color="success" (click)="addMaestro()">
+        <ion-icon slot="icon-only" name="person-add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-item>
+
+  <ion-list *ngIf="maestros().length > 0">
+    <ion-item-sliding *ngFor="let maestro of maestros()">
+      <ion-item (click)="openModal(maestro.nombre)">
+        <ion-label>
+          <h2>{{ maestro.nombre }}</h2>
+          <p *ngIf="maestro.grados">
+            {{ maestro.grados | json }}
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-buttons slot="end">
+        <ion-button color="danger" (click)="deleteMaestro(maestro.nombre)">
+          Eliminar
+        </ion-button>
+      </ion-buttons>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-item lines="none">
+    <ion-button expand="block" color="tertiary" (click)="exportData()">
+      Exportar Registros
+    </ion-button>
+  </ion-item>
+
+  <ion-item lines="none">
+    <input type="file" (change)="importData($event)" />
+  </ion-item>
+</ion-content>

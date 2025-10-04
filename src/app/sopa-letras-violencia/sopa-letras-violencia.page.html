@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/violencia-genero" text="Volver" icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>🧩 Sopa de Letras</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="game-info">
+    <div class="stats">
+      <ion-chip color="success">
+        <ion-icon name="star"></ion-icon>
+        <ion-label>Puntos: {{ score }}</ion-label>
+      </ion-chip>
+      <ion-chip color="danger">
+        <ion-icon name="heart"></ion-icon>
+        <ion-label>Vidas: {{ lives }}</ion-label>
+      </ion-chip>
+    </div>
+
+    <!-- Barra y número de tiempo -->
+    <div class="timer">
+      <div class="time-bar" [style.width.%]="(timeLeft/120)*100"></div>
+      <span class="time-text">⏱️ {{ timeLeft }}s</span>
+    </div>
+  </div>
+
+  <!-- Tablero de letras -->
+  <div class="grid">
+    <div class="row" *ngFor="let row of grid; let r = index">
+      <span
+        *ngFor="let cell of row; let c = index"
+        [class.selected]="isSelected(r, c)"
+        (click)="selectCell(r, c)"
+      >
+        {{ cell }}
+      </span>
+    </div>
+  </div>
+
+  <!-- Lista de palabras -->
+  <div class="word-list">
+    <h3>🔎 Encuentra estas palabras</h3>
+    <ul>
+      <li *ngFor="let word of placedWords" [class.found]="word.found">
+        {{ word.word }}
+      </li>
+    </ul>
+  </div>
+
+  <!-- Controles -->
+  <div class="controls">
+    <ion-button expand="block" color="tertiary" (click)="reset()">
+      <ion-icon name="refresh-outline" slot="start"></ion-icon>
+      Reiniciar
+    </ion-button>
+  </div>
+
+  <!-- Ranking -->
+  <div class="ranking">
+    <h3>🏆 Ranking</h3>
+    <ion-list>
+      <ion-item *ngFor="let item of leaderboard; let i = index">
+
+        <ion-label>
+          <strong>{{ i+1 }}. {{ item.name }}</strong>
+          <p>{{ item.score }} puntos - {{ item.date | date:'short' }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <!-- Pantalla final -->
+  <div *ngIf="gameState !== 'playing'" class="final">
+    <h2 class="titulo-final">
+      {{ gameState === 'won' ? '🎉 ¡Ganaste!' : '💔 Fin del juego' }}
+    </h2>
+    <p class="puntos-final">Puntaje final: {{ score }}</p>
+
+    <ion-item>
+      <ion-label position="floating">Tu nombre</ion-label>
+      <ion-input [(ngModel)]="nameForRanking"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" color="success" (click)="saveToLeaderboard()">
+      <ion-icon name="save-outline" slot="start"></ion-icon>
+      Guardar en ranking
+    </ion-button>
+
+    <ion-button expand="block" color="warning" (click)="reset()">
+      <ion-icon name="play-outline" slot="start"></ion-icon>
+      Jugar otra vez
+    </ion-button>
+  </div>
+
+  <!-- Fallback de confeti -->
+  <div class="confetti-fallback"></div>
+</ion-content>

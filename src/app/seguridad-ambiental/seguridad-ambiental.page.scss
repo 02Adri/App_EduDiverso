@@ -1,0 +1,157 @@
+.header-violencia {
+  ion-toolbar {
+    --background: linear-gradient(135deg, #0edf6c 0%, #00e056 100%);
+    --color: #fff;
+    border-radius: 0 0 18px 18px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+    animation: fadeSlideIn 0.8s ease-out;
+    position: relative;
+    overflow: hidden;
+  }
+
+  ion-back-button {
+    --color: #fff;
+    font-weight: 500;
+  }
+
+  ion-button {
+    --color: #fff;
+  }
+
+  .title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    text-align: left;
+  }
+
+  .header-img {
+    height: 42px;
+    width: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    animation: floatImage 4s ease-in-out infinite;
+  }
+
+  .title-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    h1 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin: 0;
+      color: #fff;
+      text-transform: uppercase;
+      animation: fadeInText 1.2s ease-in-out;
+    }
+
+    p {
+      font-size: 0.85rem;
+      margin: 0;
+      color: #e0e0e0;
+      animation: fadeInText 1.5s ease-in-out;
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -100%;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #ff8a00, #e52e71, #8e2de2);
+    animation: loadingBar 6s linear infinite;
+  }
+}
+
+/* Fondo general */
+.ambiental-content {
+  --background: linear-gradient(to bottom, #e8f8ef, #f5fff9);
+  padding: 20px;
+
+  .intro-text {
+    text-align: center;
+    margin-bottom: 20px;
+    animation: fadeSlideIn 0.9s ease-out;
+
+    h2 {
+      font-size: 1.4rem;
+      color: #097b43;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: #2e2e2e;
+    }
+  }
+}
+
+/* Tarjetas */
+.game-card {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 16px;
+
+  img {
+    height: 180px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  ion-card-header {
+    text-align: center;
+    background: #fff;
+  }
+
+  ion-card-title {
+    color: #0a804a;
+    font-weight: 700;
+  }
+
+  ion-card-subtitle {
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+
+    img {
+      transform: scale(1.05);
+    }
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+/* Animaciones */
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(-25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatImage {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes fadeInText {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes loadingBar {
+  0% { left: -100%; }
+  50% { left: 0; }
+  100% { left: 100%; }
+}

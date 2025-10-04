@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>📒 Bitácora del Taller</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openNewEntry()">
+        <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <div class="toolbar-row">
+      <ion-searchbar placeholder="Buscar tema, participante o etiqueta"
+                     [(ngModel)]="filterQuery"
+                     (ionChange)="applyFilter()"></ion-searchbar>
+      <ion-button fill="outline" (click)="openFilters()" class="filter-btn">
+        <ion-icon slot="start" name="funnel-outline"></ion-icon>
+        Filtrar
+      </ion-button>
+      <ion-button fill="clear" (click)="exportAll()" title="Exportar JSON">
+        <ion-icon slot="icon-only" name="download-outline"></ion-icon>
+      </ion-button>
+    </div>
+
+    <ion-list>
+      <ion-item *ngFor="let e of displayedEntries" (click)="openView(e)">
+        <ion-avatar slot="start" *ngIf="e.photos && e.photos.length > 0">
+          <img [src]="bs.getWebPath(e.photos[0])" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ e.title }}</h2>
+          <p class="muted">{{ e.topic }} • {{ e.participants.length ? (e.participants.join(', ')) : 'Sin participantes' }}</p>
+          <p class="muted small">{{ e.date | date:'mediumDate' }} — {{ e.createdAt | date:'shortTime' }}</p>
+        </ion-label>
+        <ion-button slot="end" fill="clear" (click)="confirmDelete(e, $event)">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+
+    <div *ngIf="displayedEntries.length===0" class="empty">
+      <ion-icon name="book-outline"></ion-icon>
+      <p>No hay entradas aún. Usa + para crear una nueva bitácora.</p>
+    </div>
+  </div>
+
+  <!-- Drawer crear/editar -->
+  <div class="drawer" [class.open]="drawerOpen">
+    <div class="drawer-header">
+      <h3>{{ editingEntry ? 'Editar entrada' : 'Nueva entrada' }}</h3>
+      <ion-button fill="clear" (click)="closeDrawer()"><ion-icon name="close-outline"></ion-icon></ion-button>
+    </div>
+
+    <div class="drawer-body">
+      <ion-item>
+        <ion-label position="stacked">Título</ion-label>
+        <ion-input [(ngModel)]="form.title"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Tema</ion-label>
+        <ion-input [(ngModel)]="form.topic"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Participantes (separado por coma)</ion-label>
+        <ion-input [(ngModel)]="participantsRaw"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Notas</ion-label>
+        <ion-textarea rows="4" [(ngModel)]="form.notes"></ion-textarea>
+      </ion-item>
+
+      <div class="file-row">
+        <input type="file" accept="image/*" (change)="onPhotoSelected($event)" multiple />
+      </div>
+
+      <div class="preview-photos">
+        <div class="thumb" *ngFor="let p of form.photos; let i = index">
+          <img [src]="bs.getWebPath(p)" />
+          <button (click)="removePhoto(i)"><ion-icon name="close-circle"></ion-icon></button>
+        </div>
+      </div>
+
+      <ion-item>
+        <ion-label position="stacked">Fecha</ion-label>
+        <ion-datetime displayFormat="LL" [(ngModel)]="form.date"></ion-datetime>
+      </ion-item>
+
+      <div class="drawer-actions">
+        <ion-button expand="block" color="primary" (click)="saveEntry()">
+          <ion-icon slot="start" name="save-outline"></ion-icon>
+          Guardar
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,55 @@
+<ion-header [translucent]="true" class="header-violencia">
+  <ion-toolbar>
+    <!-- Botón volver -->
+    <ion-buttons slot="start">
+      <ion-back-button 
+        defaultHref="/home" 
+        text="Volver" 
+        icon="chevron-back-outline">
+      </ion-back-button>
+    </ion-buttons>
+
+    <!-- Centro: imagen + título -->
+    <ion-title>
+      <div class="title-container">
+        <img src="/assets/figuras/Ambiente.png" alt="Seguridad Ambiental" class="header-img" />
+        <div class="title-text">
+          <h1>Seguridad Ambiental</h1>
+          <p>Cuidemos nuestro hogar</p>
+        </div>
+      </div>
+    </ion-title>
+
+    <!-- Botón extra -->
+    <ion-buttons slot="end">
+      <ion-button fill="clear">
+        <ion-icon name="information-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ambiental-content">
+  <div class="intro-text">
+    <h2>🌿 Aprende y Juega</h2>
+    <p>Participa en estos juegos educativos y descubre cómo proteger nuestro planeta mientras te diviertes.</p>
+  </div>
+
+  <!-- Tarjeta 1 -->
+  <ion-card button (click)="navegarJuego()" class="game-card animate-card">
+    <img src="/assets/figuras/recolector_verde.png" alt="Recolector Verde">
+    <ion-card-header>
+      <ion-card-title>Recolector Verde</ion-card-title>
+      <ion-card-subtitle>¡Pon a prueba tus conocimientos sobre reciclaje!</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+  <!-- Tarjeta 2 -->
+  <ion-card button (click)="navegarCrucigrama()" class="game-card animate-card">
+    <img src="/assets/figuras/crucigrama.png" alt="Crucigrama Verde">
+    <ion-card-header>
+      <ion-card-title>Crucigrama Verde</ion-card-title>
+      <ion-card-subtitle>Demuestra cuánto sabes sobre el medio ambiente.</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+</ion-content>

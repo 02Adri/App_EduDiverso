@@ -1,0 +1,133 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/violencia-genero" text="Volver" icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Juego del Sapito 🐸</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Pantalla inicio -->
+  <div *ngIf="!juegoIniciado && !juegoFinalizado" class="inicio">
+    <ion-item>
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input [(ngModel)]="jugador" placeholder="Tu nombre"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" color="success" (click)="prepararJuego()">
+      <ion-icon slot="start" name="play-outline"></ion-icon> Comenzar
+    </ion-button>
+    <ion-button expand="block" color="tertiary" (click)="abrirRanking()">
+      <ion-icon slot="start" name="trophy-outline"></ion-icon> Ver Ranking
+    </ion-button>
+  </div>
+
+  <!-- Cuenta regresiva -->
+  <div *ngIf="mostrandoCuenta" class="countdown">
+    <h1>{{ cuentaRegresiva }}</h1>
+  </div>
+
+  <!-- Juego -->
+  <div *ngIf="juegoIniciado && !juegoFinalizado" class="juego">
+
+    <!-- Barra superior -->
+    <div class="barra-superior">
+      <div class="vidas">
+        <ion-icon name="heart" *ngFor="let v of [].constructor(vidas)"></ion-icon>
+      </div>
+
+      <div class="timer-wrap">
+        <div class="timer-circle" [style.--porcentaje]="porcentajeTiempo + '%'">
+          {{ tiempoRestante }}s
+        </div>
+      </div>
+
+      <div class="puntos">⭐ {{ puntos }}</div>
+    </div>
+
+    <!-- Lago con sapito -->
+    <div class="lago">
+      <img src="/assets/figuras/lago.png" class="fondo" alt="lago"/>
+      <img src="/assets/figuras/sapito.png"
+           class="sapito"
+           [ngClass]="claseSapito"
+           [style.left.%]="posicionPorcentaje"
+           alt="sapito"/>
+      <div class="burbujas">
+        <ion-icon name="ellipse-outline" *ngFor="let b of [].constructor(6)" class="burbuja"></ion-icon>
+      </div>
+    </div>
+
+    <!-- Pregunta y opciones -->
+    <div class="pregunta-panel">
+      <h2 class="titulo-pregunta">{{ preguntaActual.texto }}</h2>
+
+      <div class="opciones">
+        <div class="hoja" *ngFor="let op of preguntaActual.opciones" (click)="responder(op)">
+          <div class="hoja-texto">{{ op.texto }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Animaciones overlays -->
+    <div *ngIf="mostrarAnimPuntos" class="overlay puntos-overlay">{{ textoAnimPuntos }}</div>
+    <div *ngIf="mostrarAnimVida" class="overlay vida-overlay">-1 ❤️</div>
+  </div>
+
+  <!-- Pantalla final con confeti y partículas -->
+  <div *ngIf="juegoFinalizado" class="final">
+    <div class="particulas-container">
+      <div *ngFor="let p of [].constructor(50)" class="particula"></div>
+      <div *ngFor="let c of [].constructor(40)" class="confeti"></div>
+    </div>
+
+    <h2 class="titulo-final">{{ vidas > 0 ? '¡Ganaste! 🎉' : 'Fin del juego 😢' }}</h2>
+    <p class="puntos-final">Puntos: {{ puntos }}</p>
+    <ion-button expand="block" color="success" (click)="reiniciarJuego()">
+      <ion-icon slot="start" name="refresh-outline"></ion-icon> Jugar de nuevo
+    </ion-button>
+    <ion-button expand="block" color="tertiary" (click)="abrirRanking()">
+      <ion-icon slot="start" name="trophy-outline"></ion-icon> Ver Ranking
+    </ion-button>
+  </div>
+
+  <!-- Modal ranking -->
+  <ion-modal [isOpen]="rankingAbierto" (didDismiss)="rankingAbierto=false">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="dark">
+          <ion-title>🏆 Ranking</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="rankingAbierto=false">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="ion-padding">
+        <ion-list *ngIf="puntuacionesGuardadas.length > 0">
+          <ion-item *ngFor="let r of puntuacionesGuardadas; let i = index">
+            <ion-label>
+              <h2>{{ i + 1 }}. {{ r.nombre }} <small>{{ r.insignia }}</small></h2>
+              <p>
+                🔸 Puntos: <strong>{{ r.puntos }}</strong> | 
+                📈 {{ r.porcentaje }}% | 
+                ⏳ {{ r.fecha | date:'short' }}
+              </p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+
+        <div *ngIf="puntuacionesGuardadas.length === 0" class="ion-text-center ion-padding">
+          <p>No hay puntuaciones aún. ¡Juega y sé el primero! 🌱</p>
+        </div>
+
+        <ion-button expand="block" color="danger" (click)="limpiarRanking()">
+          <ion-icon slot="start" name="trash-outline"></ion-icon> Limpiar Ranking
+        </ion-button>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>

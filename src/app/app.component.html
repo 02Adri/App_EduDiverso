@@ -1,3 +1,54 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+   <ion-menu contentId="main-content" type="overlay">
+    <ion-header>
+      <ion-toolbar color="success">
+        <ion-title>Menú Principal</ion-title>
+      </ion-toolbar>
+    </ion-header>
+  
+  <ion-content class="menu-content" >
+     <ion-list>  
+       <!--Seccion de Estudiante-->
+       <ion-item-divider color="light">
+         <ion-label>👩‍🎓 Sección de Niños y Niñas</ion-label>
+       </ion-item-divider>
+       <ion-item (click)="navigateToClick('/seguridad-ambiental')"> 
+        <ion-icon name="leaf-outline" slot="start" ></ion-icon>
+        <ion-label>Seguridad Ambiental</ion-label>
+       </ion-item>
+       <ion-item (click)="navigateToClick('/violencia-genero')"> 
+        <ion-icon name="hand-left-outline" slot="start"></ion-icon>
+        <ion-label>Prevención de Violencia de Género</ion-label>
+       </ion-item>
+
+       <ion-item-divider color="light">
+         <!--Seccion de Docentes-->
+          <ion-label>👩‍🏫 Sección de Facilitadores</ion-label>
+       </ion-item-divider>
+       
+        <ion-item (click)="onMenuItemClick('/evaluacion')">
+        <ion-icon name="analytics-outline" slot="start"></ion-icon>
+        <ion-label>Bitacora de Talleres</ion-label>
+      </ion-item>
+
+        <ion-item-divider color="light">
+         <!--Seccion de Docentes-->
+          <ion-label>Sección de Biblioteca</ion-label>
+       </ion-item-divider>
+         <!-- Login -->
+        <ion-item routerLink="/login" routerDirection="root">
+          <ion-icon name="log-in-outline" slot="start"></ion-icon>
+          <ion-label>🔑Iniciar Sesión para Biblioteca Virtual.</ion-label>
+        </ion-item>
+       <!-- Biblioteca Virtual accesible para todos -->
+        <ion-item routerLink="/library" routerDirection="root">
+          <ion-icon name="book-outline" slot="start"></ion-icon>
+          <ion-label>📚 Biblioteca Virtual</ion-label>
+        </ion-item>
+     </ion-list>
+  </ion-content >
+  </ion-menu>
+  
+    <ion-router-outlet id="main-content" ></ion-router-outlet>
+  
 </ion-app>
