@@ -57,6 +57,14 @@ export const routes: Routes = [
   {
     path: 'sopa-letras-violencia',
     loadComponent: () => import('./sopa-letras-violencia/sopa-letras-violencia.page').then( m => m.SopaLetrasViolenciaPage)
+  },  {
+    path: 'ruleta',
+    loadComponent: () => import('./ruleta/ruleta.page').then( m => m.RuletaPage)
+  },
+  {
+    path: 'sopa-letras-ambiental',
+    loadComponent: () => import('./sopa-letras-ambiental/sopa-letras-ambiental.page').then( m => m.SopaLetrasAmbientalPage)
   }
+
   
 ];

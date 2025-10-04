@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar color="success">
+     <ion-buttons slot="start">
+      <ion-back-button defaultHref="/seguridad-ambiental" text="Volver" icon="chevron-back-outline" class="btn-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>🌍 Ruleta Ambiental</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ruleta-bg">
+
+  <!-- Pantalla inicial -->
+  <div *ngIf="!gameStarted" class="start-screen">
+    <h1 class="title">🌱 Bienvenido a la Ruleta Ambiental</h1>
+    <ion-item class="name-input">
+      <ion-label position="floating">Ingresa tu nombre</ion-label>
+      <ion-input [(ngModel)]="playerName"></ion-input>
+    </ion-item>
+    <ion-button expand="block" shape="round" color="tertiary" (click)="startGame()">
+      🎮 Comenzar Juego
+    </ion-button>
+  </div>
+
+  <!-- Juego activo -->
+  <div *ngIf="gameStarted" class="game-area">
+    <div class="status-bar">
+      <!-- Vidas -->
+      <div class="lives">
+        <span *ngFor="let l of [].constructor(lives)">❤️</span>
+      </div>
+      <!-- Tiempo -->
+      <div class="time-bar">
+        <div class="time-progress" [style.width.%]="(timeLeft/120)*100"
+             [ngClass]="{'warning': timeLeft < 60, 'danger': timeLeft < 30}">
+        </div>
+      </div>
+      <!-- Puntos -->
+      <div class="points">⭐ {{points}}</div>
+    </div>
+
+    <!-- Ruleta -->
+    <div class="roulette-container">
+      <div #wheel class="roulette-wheel">
+        <div *ngFor="let icon of icons; let i = index" 
+             class="sector" 
+             [style.transform]="'rotate('+(i*(360/icons.length))+'deg)'">
+          <span>{{icon}}</span>
+        </div>
+      </div>
+      <div class="pointer">⬇️</div>
+    </div>
+
+    <ion-button expand="block" color="warning" shape="round" (click)="spinRoulette()" [disabled]="spinning">
+      🎡 Girar Ruleta
+    </ion-button>
+
+    <!-- Pregunta -->
+    <ion-card *ngIf="currentQuestion" class="question-card animate__animated animate__fadeInUp">
+      <ion-card-header>
+        <ion-card-title>{{currentQuestion.icon}} {{currentQuestion.question}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12" *ngFor="let opt of currentQuestion.options">
+              <ion-button expand="block" shape="round" (click)="answerQuestion(opt)">
+                {{opt}}
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Mensaje de resultado -->
+    <div *ngIf="resultMessage" class="result-msg animate__animated animate__bounceIn">
+      {{resultMessage}}
+    </div>
+  </div>
+
+  <!-- Ranking final -->
+  <div *ngIf="ranking.length && !gameStarted" class="ranking">
+    <h2>🏆 Ranking Ambiental</h2>
+    <ion-list>
+      <ion-item *ngFor="let entry of ranking; let i = index">
+        <ion-label>
+          <strong [ngClass]="{'gold': i===0, 'silver': i===1, 'bronze': i===2}">
+            {{i+1}}. {{entry.name}}
+          </strong>
+        </ion-label>
+        <ion-label slot="end">{{entry.points}} pts</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+</ion-content>

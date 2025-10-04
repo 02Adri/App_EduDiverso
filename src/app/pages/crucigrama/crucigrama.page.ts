@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import {
   IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonButton,
   IonInput, IonIcon, IonList, IonItem, IonLabel, IonGrid, IonRow, IonCol,
-  IonProgressBar, IonAvatar, IonBadge
+  IonProgressBar, IonAvatar, IonBadge,IonBackButton
 } from '@ionic/angular/standalone';
 import { GameService } from '../../service/game.service';
 import { ScoreEntry } from '../../models/score-entry.model';
@@ -20,7 +20,7 @@ let confetti: any = null;
   imports: [
     IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonButton,
     CommonModule, FormsModule, IonInput, IonIcon, IonList, IonItem, IonLabel,
-    IonGrid, IonRow, IonCol, IonProgressBar, IonAvatar, IonBadge
+    IonGrid, IonRow, IonCol, IonProgressBar, IonAvatar, IonBadge,IonBackButton
   ],
 })
 export class CrucigramaPage implements OnInit {
